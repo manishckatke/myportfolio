@@ -115,7 +115,10 @@ export default function Home() {
                   size={20}
                   className="group-hover:translate-x-1 transition-transform"
                 />
-                <a href="/MANISH_KATKE_UIUX_Designer2026" download>
+                
+              </motion.button>
+            </Link>
+            <a href="/MANISH_KATKE_UIUX_Designer2026" download>
   <motion.button
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
@@ -124,8 +127,6 @@ export default function Home() {
     <span>Download CV</span>
   </motion.button>
 </a>
-              </motion.button>
-            </Link>
           </motion.div>
         </div>
       </section>
