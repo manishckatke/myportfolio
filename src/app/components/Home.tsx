@@ -118,7 +118,7 @@ export default function Home() {
                 
               </motion.button>
             </Link>
-            <a href="/MANISH_KATKE_UIUX_Designer2026" download>
+            <a href="/MANISH_KATKE_UIUX_Designer2026.pdf" download>
   <motion.button
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
