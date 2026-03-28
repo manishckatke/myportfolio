@@ -2,15 +2,15 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ArrowRight, Sparkles, Target, Zap, Users, BarChart, Layers } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import capgeminiLogo from "figma:asset/e3284ba8d33dc0a9f52853d475ca2f082bf7a48d.png";
-import deloitteLogo from "figma:asset/acdf1fe13e99d02bff71b9052685292649e224b0.png";
-import hsbcLogo from "figma:asset/7bf727c9e30571ed8ebe970be3a15198d537730e.png";
-import disneyLogo from "figma:asset/dfdd6e7a1f65a22c78918dfeb130a53d1f0facba.png";
-import philipsLogo from "figma:asset/5f9c37f21465f545e8fc638c59abf6396f495092.png";
-import geLogo from "figma:asset/1f7b31fa01db81ee0cc7124394b9a2195ed3978a.png";
-import nabLogo from "figma:asset/b355d5351d92c97af7840c1e2edcb5f467273a85.png";
-import kpmgLogo from "figma:asset/40d966af42bfc0641082632e1fd1fc39eada1574.png";
-import safatLogo from "figma:asset/50aabdaed5ebc6dfc8eda79e3d23f423ea6da4e0.png";
+import capgeminiLogo from "../../assets/e3284ba8d33dc0a9f52853d475ca2f082bf7a48d.png";
+import deloitteLogo from "../../assets/acdf1fe13e99d02bff71b9052685292649e224b0.png";
+import hsbcLogo from "../../assets/7bf727c9e30571ed8ebe970be3a15198d537730e.png";
+import disneyLogo from "../../assets/dfdd6e7a1f65a22c78918dfeb130a53d1f0facba.png";
+import philipsLogo from "../../assets/5f9c37f21465f545e8fc638c59abf6396f495092.png";
+import geLogo from "../../assets/1f7b31fa01db81ee0cc7124394b9a2195ed3978a.png";
+import nabLogo from "../../assets/b355d5351d92c97af7840c1e2edcb5f467273a85.png";
+import kpmgLogo from "../../assets/40d966af42bfc0641082632e1fd1fc39eada1574.png";
+import safatLogo from "../../assets/50aabdaed5ebc6dfc8eda79e3d23f423ea6da4e0.png";
 
 export default function Home() {
   const clients = [
