@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ArrowRight, Sparkles, Target, Zap, Users, BarChart, Layers } from "lucide-react";
-import { ImageWithFallback } from "./figma/ImageWithFallback";
+
 import capgeminiLogo from "../../assets/e3284ba8d33dc0a9f52853d475ca2f082bf7a48d.png";
 import deloitteLogo from "../../assets/acdf1fe13e99d02bff71b9052685292649e224b0.png";
 import hsbcLogo from "../../assets/7bf727c9e30571ed8ebe970be3a15198d537730e.png";
@@ -185,11 +185,11 @@ export default function Home() {
               className="relative"
             >
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-teal-950/30 backdrop-blur-sm border border-teal-700/50">
-                <ImageWithFallback
-                  src="https://images.unsplash.com/photo-1622128082634-1f9742839291?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxkZXNpZ24lMjB3b3Jrc3BhY2UlMjBtb2Rlcm58ZW58MXx8fHwxNzc0Njk1MTc0fDA&ixlib=rb-4.1.0&q=80&w=1080"
-                  alt="Design workspace"
-                  className="w-full h-full object-cover"
-                />
+                <img
+  src="https://images.unsplash.com/photo-1622128082634-1f9742839291?..."
+  alt="Design workspace"
+  className="w-full h-full object-cover"
+/>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>
             </motion.div>
