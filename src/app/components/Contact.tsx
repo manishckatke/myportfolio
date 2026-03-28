@@ -12,11 +12,25 @@ export default function Contact() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+
+  const phone = "918446008333"; // your WhatsApp number
+
+  const text = `Hello, my name is ${formData.name}
+Email: ${formData.email}
+Company: ${formData.company}
+Message: ${formData.message}`;
+
+  const encodedText = encodeURIComponent(text);
+
+  const url = `https://wa.me/${phone}?text=${encodedText}`;
+
+  window.open(url, "_blank");
+
+  setIsSubmitted(true);
+  setTimeout(() => setIsSubmitted(false), 3000);
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -77,7 +91,7 @@ export default function Contact() {
               </motion.a>
 
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/manishuiuxdesigner/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ x: 8 }}
@@ -204,7 +218,7 @@ export default function Contact() {
                   </motion.span>
                 ) : (
                   <>
-                    <span>Send Message</span>
+                    <span>Send whatsApp Message</span>
                     <Send size={20} />
                   </>
                 )}

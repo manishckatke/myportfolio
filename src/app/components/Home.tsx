@@ -69,19 +69,19 @@ export default function Home() {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-30 scale-110 blur-[2px]"
           >
             <source
-              src="https://cdn.coverr.co/videos/coverr-abstract-digital-waves-6606/1080p.mp4"
+              src="https://videos.pexels.com/video-files/6963744/6963744-hd_1920_1080_25fps.mp4"
               type="video/mp4"
             />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
         </div>
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
@@ -106,7 +106,7 @@ export default function Home() {
             </p>
             <Link to="/work">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0px 0px 30px rgba(20, 184, 166, 0.6)" }}
                 whileTap={{ scale: 0.95 }}
                 className="group px-8 py-4 bg-teal-500 text-black rounded-full hover:bg-teal-400 transition-all inline-flex items-center gap-3 shadow-lg shadow-teal-500/50"
               >
@@ -186,7 +186,7 @@ export default function Home() {
             >
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-teal-950/30 backdrop-blur-sm border border-teal-700/50">
                 <img
-  src="https://images.unsplash.com/photo-1622128082634-1f9742839291?..."
+                     src="https://images.unsplash.com/photo-1622128082634-1f9742839291?auto=format&fit=crop&w=1080&q=80"
   alt="Design workspace"
   className="w-full h-full object-cover"
 />
