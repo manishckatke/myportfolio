@@ -76,7 +76,7 @@ export default function Home() {
               type="video/mp4"
             />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
         </div>
 
         <div className="max-w-6xl mx-auto text-center relative z-10">
@@ -115,6 +115,15 @@ export default function Home() {
                   size={20}
                   className="group-hover:translate-x-1 transition-transform"
                 />
+                <a href="/MANISH_KATKE_UIUX_Designer2026" download>
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="mt-4 px-8 py-4 border border-teal-500 text-teal-300 rounded-full hover:bg-teal-500 hover:text-black transition-all inline-flex items-center gap-3"
+  >
+    <span>Download CV</span>
+  </motion.button>
+</a>
               </motion.button>
             </Link>
           </motion.div>
