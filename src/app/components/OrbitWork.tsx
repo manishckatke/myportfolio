@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./orbit.css";
 
 const works = [
@@ -13,12 +13,35 @@ const works = [
 
 export default function OrbitWork() {
   const [active, setActive] = useState<string | null>(null);
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+
+  // 🎯 Mouse Parallax
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      setMouse({
+        x: (e.clientX - window.innerWidth / 2) / 50,
+        y: (e.clientY - window.innerHeight / 2) / 50,
+      });
+    };
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, []);
 
   return (
     <div className={`orbit-page ${active ? "shifted" : ""}`}>
 
-      {/* ORBIT SECTION */}
-      <div className="orbit-container">
+      {/* ORBIT */}
+      <div
+        className="orbit-container"
+        style={{
+          transform: `translate(${mouse.x}px, ${mouse.y}px) ${
+            active ? "translateX(-25%)" : ""
+          }`,
+        }}
+      >
+
+        {/* Glow Background */}
+        <div className="bg-glow" />
 
         {/* Center */}
         <div className="center-circle">
@@ -28,14 +51,14 @@ export default function OrbitWork() {
         </div>
 
         {/* Rings */}
-        {[200, 300, 400].map((radius, ringIndex) => (
+        {[180, 260, 340].map((radius, ringIndex) => (
           <div
             key={ringIndex}
-            className="orbit-ring"
+            className={`orbit-ring ring-${ringIndex}`}
             style={{
               width: radius * 2,
               height: radius * 2,
-              animationDuration: `${20 + ringIndex * 10}s`,
+              animationDuration: `${25 + ringIndex * 10}s`,
             }}
           >
             {works
@@ -56,7 +79,7 @@ export default function OrbitWork() {
                         active === label ? "active" : ""
                       }`}
                       style={{
-                        animationDuration: `${20 + ringIndex * 10}s`,
+                        animationDuration: `${25 + ringIndex * 10}s`,
                       }}
                       onClick={() => setActive(label)}
                     >
@@ -76,20 +99,20 @@ export default function OrbitWork() {
         )}
       </div>
 
-      {/* RIGHT CONTENT PANEL */}
+      {/* CONTENT PANEL */}
       <div className="content-panel">
         {active && (
-          <>
+          <div className="content-inner">
             <h2>{active}</h2>
             <p>
-              This is your <b>{active}</b> case study.
-              Replace this with real project screens + storytelling.
+              This is your premium <b>{active}</b> case study section.
+              Add real UI screens, metrics, before/after, storytelling.
             </p>
 
             <button onClick={() => setActive(null)}>
               ← Back
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>
