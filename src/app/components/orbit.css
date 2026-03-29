@@ -51,8 +51,11 @@
   color: #00ffc8;
   cursor: pointer;
   font-size: 11px;
-  width: 80%;
+  width: auto;
+  max-width: 140px;
+
   text-align: center;
+  white-space: nowrap;
 
   pointer-events: auto; /* 🔥 IMPORTANT */
 }
