@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import "./orbit.css";
 
-const rings = [
-  { radius: 180, speed: 20, label: "User Research" },
-  { radius: 260, speed: 30, label: "SaaS Design" },
-  { radius: 340, speed: 40, label: "Design Systems" },
+const works = [
+  "User Research",
+  "SaaS Design",
+  "Design Systems",
+  "Enterprise UX",
+  "Mobile UX",
+  "Dashboard Design",
+  "UX Audit",
 ];
 
 export default function OrbitWork() {
-  const [active, setActive] = useState("User Research");
+  const [active, setActive] = useState<string | null>(null);
 
   return (
-    <div className="orbit-layout">
-      
-      {/* LEFT - Orbit */}
+    <div className={`orbit-page ${active ? "shifted" : ""}`}>
+
+      {/* ORBIT SECTION */}
       <div className="orbit-container">
-        
+
         {/* Center */}
         <div className="center-circle">
           <h2>Manish Katke</h2>
@@ -24,41 +28,69 @@ export default function OrbitWork() {
         </div>
 
         {/* Rings */}
-        {rings.map((ring, i) => (
+        {[200, 300, 400].map((radius, ringIndex) => (
           <div
-            key={i}
+            key={ringIndex}
             className="orbit-ring"
             style={{
-              width: ring.radius * 2,
-              height: ring.radius * 2,
-              animationDuration: `${ring.speed}s`,
+              width: radius * 2,
+              height: radius * 2,
+              animationDuration: `${20 + ringIndex * 10}s`,
             }}
           >
-            <div
-              className="orbit-item-wrapper"
-              style={{
-                transform: `translate(-50%, -50%) rotate(0deg) translate(${ring.radius}px)`,
-              }}
-            >
-              <div
-                className={`orbit-item ${active === ring.label ? "active" : ""}`}
-                style={{ animationDuration: `${ring.speed}s` }}
-                onClick={() => setActive(ring.label)}
-              >
-                {ring.label}
-              </div>
-            </div>
+            {works
+              .filter((_, i) => i % 3 === ringIndex)
+              .map((label, i) => {
+                const angle = (i / 3) * 360;
+
+                return (
+                  <div
+                    key={label}
+                    className="orbit-item-wrapper"
+                    style={{
+                      transform: `rotate(${angle}deg) translate(${radius}px)`,
+                    }}
+                  >
+                    <div
+                      className={`orbit-item ${
+                        active === label ? "active" : ""
+                      }`}
+                      style={{
+                        animationDuration: `${20 + ringIndex * 10}s`,
+                      }}
+                      onClick={() => setActive(label)}
+                    >
+                      {label}
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         ))}
+
+        {/* CTA */}
+        {!active && (
+          <button className="explore-btn">
+            Explore My Work
+          </button>
+        )}
       </div>
 
-      {/* RIGHT - Content */}
-      <div className="orbit-content">
-        <h2>{active}</h2>
-        <p>
-          This section shows details about <b>{active}</b>.  
-          Replace this with your real case study / project content.
-        </p>
+      {/* RIGHT CONTENT PANEL */}
+      <div className="content-panel">
+        {active && (
+          <>
+            <h2>{active}</h2>
+            <p>
+              This is your <b>{active}</b> case study.
+              Replace this with real project screens + storytelling.
+            </p>
+
+            <button onClick={() => setActive(null)}>
+              ← Back
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
