@@ -16,18 +16,17 @@ export default function OrbitWork() {
   const [active, setActive] = useState<string | null>(null);
   const [paused, setPaused] = useState(false);
 
-  // ✅ Correct distribution
   const rings = [
-    { radius: 180, items: works.slice(0, 2) }, // inner (2)
-    { radius: 260, items: works.slice(2, 5) }, // middle (3)
-    { radius: 340, items: works.slice(5, 8) }, // outer (3)
+    { radius: 180, items: works.slice(0, 2) },
+    { radius: 260, items: works.slice(2, 5) },
+    { radius: 340, items: works.slice(5, 8) },
   ];
 
   return (
     <div className="orbit-wrapper">
 
       {/* ORBIT */}
-      <div className={`orbit-page ${active ? "hide" : ""}`}>
+      <div className={`orbit-page ${active ? "shift-left" : ""}`}>
         <div className="orbit-container">
 
           {/* CENTER */}
@@ -63,7 +62,6 @@ export default function OrbitWork() {
                         transform: `rotate(${angle}deg) translate(${ring.radius}px)`,
                       }}
                     >
-                      {/* ✅ COUNTER ROTATION FIX */}
                       <div
                         className="orbit-item"
                         style={{
@@ -85,25 +83,25 @@ export default function OrbitWork() {
         </div>
       </div>
 
-      {/* CASE STUDY */}
-      <div className={`case-study ${active ? "show" : ""}`}>
+      {/* RIGHT PANEL */}
+      <div className={`case-panel ${active ? "open" : ""}`}>
         {active && (
           <>
-            <div className="case-header">
-              <button onClick={() => setActive(null)}>← Back</button>
+            <div className="panel-header">
               <h2>{active}</h2>
+              <button className="close-btn" onClick={() => setActive(null)}>
+                ✕
+              </button>
             </div>
 
-            <div className="case-content">
-              <h1>{active}</h1>
-              <p>
-                Add your real case study here with UI screens, process,
-                and results.
-              </p>
+            <div className="panel-content">
+              <p>This is your case study panel.</p>
+              <p>Add images, UX process, results, etc.</p>
             </div>
           </>
         )}
       </div>
+
     </div>
   );
 }
