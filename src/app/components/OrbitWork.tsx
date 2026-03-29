@@ -17,9 +17,9 @@ export default function OrbitWork() {
   const [paused, setPaused] = useState(false);
 
   const rings = [
-    { radius: 180, items: works.slice(0, 2) }, // inner (2)
-    { radius: 260, items: works.slice(2, 5) }, // middle (3)
-    { radius: 340, items: works.slice(5, 8) }, // outer (3)
+    { radius: 180, items: works.slice(0, 2) }, // inner
+    { radius: 260, items: works.slice(2, 5) }, // middle
+    { radius: 340, items: works.slice(5, 8) }, // outer
   ];
 
   return (
@@ -27,43 +27,49 @@ export default function OrbitWork() {
 
       {/* ORBIT */}
       <div className={`orbit-page ${active ? "hide" : ""}`}>
-
         <div className="orbit-container">
 
           {rings.map((ring, ringIndex) => (
             <div
               key={ringIndex}
-              className={`orbit-ring ${paused ? "paused" : ""}`}
+              className="orbit-ring"
               style={{
                 width: `${ring.radius * 2}px`,
                 height: `${ring.radius * 2}px`,
-                animationDuration: `${20 + ringIndex * 10}s`,
               }}
             >
-              {ring.items.map((label, i) => {
-                const angle = (i / ring.items.length) * 360;
+              <div
+                className={`orbit-rotate ${paused ? "paused" : ""}`}
+                style={{
+                  animationDuration: `${20 + ringIndex * 10}s`,
+                }}
+              >
+                {ring.items.map((label, i) => {
+                  const angle = (i / ring.items.length) * 360;
 
-                return (
-                  <div
-                    key={label}
-                    className="orbit-item-wrapper"
-                    style={{
-                      transform: `rotate(${angle}deg) translate(${ring.radius}px)`,
-                    }}
-                  >
+                  return (
                     <div
-                      className="orbit-item"
-                      onMouseEnter={() => setPaused(true)}
-                      onMouseLeave={() => setPaused(false)}
-                      onClick={() => setActive(label)}
+                      key={label}
+                      className="orbit-item-wrapper"
+                      style={{
+                        transform: `rotate(${angle}deg) translate(${ring.radius}px)`,
+                      }}
                     >
-                      {label}
+                      <div
+                        className="orbit-item"
+                        onMouseEnter={() => setPaused(true)}
+                        onMouseLeave={() => setPaused(false)}
+                        onClick={() => setActive(label)}
+                      >
+                        {label}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           ))}
+
         </div>
       </div>
 
@@ -78,7 +84,10 @@ export default function OrbitWork() {
 
             <div className="case-content">
               <h1>{active}</h1>
-              <p>Add your real case study here.</p>
+              <p>
+                Add your real case study here with UI screens, process,
+                and results.
+              </p>
             </div>
           </>
         )}
