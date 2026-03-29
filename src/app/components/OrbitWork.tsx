@@ -29,6 +29,13 @@ export default function OrbitWork() {
       <div className={`orbit-page ${active ? "hide" : ""}`}>
         <div className="orbit-container">
 
+          {/* ✅ CENTER CIRCLE */}
+          <div className="center-circle">
+            <h2>Manish Katke</h2>
+            <p>UI/UX Designer</p>
+            <span>12+ Years Experience</span>
+          </div>
+
           {rings.map((ring, ringIndex) => (
             <div
               key={ringIndex}
