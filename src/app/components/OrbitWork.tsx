@@ -17,27 +17,19 @@ export default function OrbitWork() {
   const [paused, setPaused] = useState(false);
 
   const rings = [
-    { radius: 180, items: works.slice(0, 2) },
-    { radius: 260, items: works.slice(2, 5) },
-    { radius: 340, items: works.slice(5, 8) },
+    { radius: 180, items: works.slice(0, 2) }, // inner (2)
+    { radius: 260, items: works.slice(2, 5) }, // middle (3)
+    { radius: 340, items: works.slice(5, 8) }, // outer (3)
   ];
 
   return (
     <div className="orbit-wrapper">
 
-      {/* ORBIT VIEW */}
+      {/* ORBIT */}
       <div className={`orbit-page ${active ? "hide" : ""}`}>
 
         <div className="orbit-container">
 
-          {/* Center */}
-          <div className="center-circle">
-            <h2>Manish Katke</h2>
-            <p>UI/UX Designer</p>
-            <span>12+ Years Experience</span>
-          </div>
-
-          {/* Rings */}
           {rings.map((ring, ringIndex) => (
             <div
               key={ringIndex}
@@ -45,7 +37,7 @@ export default function OrbitWork() {
               style={{
                 width: `${ring.radius * 2}px`,
                 height: `${ring.radius * 2}px`,
-                animationDuration: `${25 + ringIndex * 10}s`,
+                animationDuration: `${20 + ringIndex * 10}s`,
               }}
             >
               {ring.items.map((label, i) => {
@@ -61,9 +53,6 @@ export default function OrbitWork() {
                   >
                     <div
                       className="orbit-item"
-                      style={{
-                        animationDuration: `${25 + ringIndex * 10}s`,
-                      }}
                       onMouseEnter={() => setPaused(true)}
                       onMouseLeave={() => setPaused(false)}
                       onClick={() => setActive(label)}
@@ -78,7 +67,7 @@ export default function OrbitWork() {
         </div>
       </div>
 
-      {/* CASE STUDY VIEW */}
+      {/* CASE STUDY */}
       <div className={`case-study ${active ? "show" : ""}`}>
         {active && (
           <>
@@ -88,30 +77,8 @@ export default function OrbitWork() {
             </div>
 
             <div className="case-content">
-
-              <section className="hero">
-                <h1>{active}</h1>
-                <p>
-                  This is your premium case study. Add problem, solution,
-                  UX process, and real UI screens.
-                </p>
-              </section>
-
-              <section className="image-block">
-                <div className="img-placeholder">Screen 1</div>
-                <div className="img-placeholder">Screen 2</div>
-              </section>
-
-              <section className="text-block">
-                <h3>UX Process</h3>
-                <p>Research → Wireframe → UI → Testing</p>
-              </section>
-
-              <section className="image-block">
-                <div className="img-placeholder">Before</div>
-                <div className="img-placeholder">After</div>
-              </section>
-
+              <h1>{active}</h1>
+              <p>Add your real case study here.</p>
             </div>
           </>
         )}
