@@ -114,7 +114,7 @@
   font-size: 11px;
 
   text-align: center;
-  white-space: nowrap;
+  /*white-space: nowrap;*/
 
   pointer-events: auto;
   z-index: 5;
