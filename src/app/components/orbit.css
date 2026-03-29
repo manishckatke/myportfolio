@@ -101,7 +101,9 @@
 
 /* ITEM */
 .orbit-item {
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 0;
+  left: 0;
   padding: 10px 15px;
   background: rgba(0,255,200,0.1);
   border: 1px solid rgba(0,255,200,0.3);

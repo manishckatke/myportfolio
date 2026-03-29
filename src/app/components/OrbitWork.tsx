@@ -16,10 +16,11 @@ export default function OrbitWork() {
   const [active, setActive] = useState<string | null>(null);
   const [paused, setPaused] = useState(false);
 
+  // ✅ Correct distribution
   const rings = [
-    { radius: 180, items: works.slice(0, 2) }, // inner
-    { radius: 260, items: works.slice(2, 5) }, // middle
-    { radius: 340, items: works.slice(5, 8) }, // outer
+    { radius: 180, items: works.slice(0, 2) }, // inner (2)
+    { radius: 260, items: works.slice(2, 5) }, // middle (3)
+    { radius: 340, items: works.slice(5, 8) }, // outer (3)
   ];
 
   return (
@@ -29,7 +30,7 @@ export default function OrbitWork() {
       <div className={`orbit-page ${active ? "hide" : ""}`}>
         <div className="orbit-container">
 
-          {/* ✅ CENTER CIRCLE */}
+          {/* CENTER */}
           <div className="center-circle">
             <h2>Manish Katke</h2>
             <p>UI/UX Designer</p>
@@ -62,8 +63,12 @@ export default function OrbitWork() {
                         transform: `rotate(${angle}deg) translate(${ring.radius}px)`,
                       }}
                     >
+                      {/* ✅ COUNTER ROTATION FIX */}
                       <div
                         className="orbit-item"
+                        style={{
+                          transform: `translate(-50%, -50%) rotate(-${angle}deg)`,
+                        }}
                         onMouseEnter={() => setPaused(true)}
                         onMouseLeave={() => setPaused(false)}
                         onClick={() => setActive(label)}
