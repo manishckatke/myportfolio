@@ -1,47 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./orbit.css";
 
 const works = [
-  "User Research",
-  "SaaS Design",
-  "Design Systems",
-  "Enterprise UX",
-  "Mobile UX",
-  "Dashboard Design",
-  "UX Audit",
+  "Kiosks App Design - Safat UK",
+  "AI Analytics Dashboard",
+  "Financial Data Visualization",
+  "Machine Learning Platform",
+  "Healthcare SaaS Platform",
+  "AI-Powered Customer Support",
+  "Predictive Analytics Engine",
 ];
 
 export default function OrbitWork() {
   const [active, setActive] = useState<string | null>(null);
-  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [paused, setPaused] = useState(false);
 
-  // 🎯 Mouse Parallax
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      setMouse({
-        x: (e.clientX - window.innerWidth / 2) / 50,
-        y: (e.clientY - window.innerHeight / 2) / 50,
-      });
-    };
-    window.addEventListener("mousemove", handleMove);
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, []);
+  const rings = [
+    { radius: 180, items: works.slice(0, 2) },
+    { radius: 260, items: works.slice(2, 4) },
+    { radius: 340, items: works.slice(4, 7) }, // 3 items
+  ];
 
   return (
     <div className={`orbit-page ${active ? "shifted" : ""}`}>
 
       {/* ORBIT */}
-      <div
-        className="orbit-container"
-        style={{
-          transform: `translate(${mouse.x}px, ${mouse.y}px) ${
-            active ? "translateX(-25%)" : ""
-          }`,
-        }}
-      >
-
-        {/* Glow Background */}
-        <div className="bg-glow" />
+      <div className="orbit-container">
 
         {/* Center */}
         <div className="center-circle">
@@ -51,62 +35,55 @@ export default function OrbitWork() {
         </div>
 
         {/* Rings */}
-        {[180, 260, 340].map((radius, ringIndex) => (
+        {rings.map((ring, ringIndex) => (
           <div
             key={ringIndex}
-            className={`orbit-ring ring-${ringIndex}`}
+            className={`orbit-ring ${paused ? "paused" : ""}`}
             style={{
-              width: radius * 2,
-              height: radius * 2,
+              width: ring.radius * 2,
+              height: ring.radius * 2,
               animationDuration: `${25 + ringIndex * 10}s`,
             }}
           >
-            {works
-              .filter((_, i) => i % 3 === ringIndex)
-              .map((label, i) => {
-                const angle = (i / 3) * 360;
+            {ring.items.map((label, i) => {
+              const angle = (i / ring.items.length) * 360;
 
-                return (
+              return (
+                <div
+                  key={label}
+                  className="orbit-item-wrapper"
+                  style={{
+                    transform: `rotate(${angle}deg) translate(${ring.radius}px)`,
+                  }}
+                >
                   <div
-                    key={label}
-                    className="orbit-item-wrapper"
+                    className={`orbit-item ${
+                      active === label ? "active" : ""
+                    }`}
                     style={{
-                      transform: `rotate(${angle}deg) translate(${radius}px)`,
+                      animationDuration: `${25 + ringIndex * 10}s`,
                     }}
+                    onMouseEnter={() => setPaused(true)}
+                    onMouseLeave={() => setPaused(false)}
+                    onClick={() => setActive(label)}
                   >
-                    <div
-                      className={`orbit-item ${
-                        active === label ? "active" : ""
-                      }`}
-                      style={{
-                        animationDuration: `${25 + ringIndex * 10}s`,
-                      }}
-                      onClick={() => setActive(label)}
-                    >
-                      {label}
-                    </div>
+                    {label}
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </div>
         ))}
-
-        {/* CTA */}
-        {!active && (
-          <button className="explore-btn">
-            Explore My Work
-          </button>
-        )}
       </div>
 
-      {/* CONTENT PANEL */}
+      {/* RIGHT PANEL */}
       <div className="content-panel">
         {active && (
           <div className="content-inner">
             <h2>{active}</h2>
             <p>
-              This is your premium <b>{active}</b> case study section.
-              Add real UI screens, metrics, before/after, storytelling.
+              This is your <b>{active}</b> case study.  
+              Add images, UX process, metrics, before/after.
             </p>
 
             <button onClick={() => setActive(null)}>
