@@ -1,3 +1,4 @@
+import OrbitWork from "./components/OrbitWork";
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
@@ -63,85 +64,100 @@ export default function Work() {
     },
   ];
 
+  // Smooth scroll function
+  const scrollToProject = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <div className="min-h-screen py-32 px-6 bg-black">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
-        >
-          <h1 className="text-6xl md:text-8xl mb-6 tracking-tight">
-            <span className="bg-gradient-to-br from-white via-teal-100 to-teal-400 bg-clip-text text-transparent">
-              Selected Work
-            </span>
-          </h1>
-          <p className="text-xl text-teal-200/70 max-w-2xl">
-            A curated collection of projects spanning AI/ML interfaces, data visualization, and enterprise SaaS platforms
-          </p>
-        </motion.div>
+    <>
+      {/* 🌌 Orbit UI Section with clickable nodes */}
+      <OrbitWork onNodeClick={scrollToProject} />
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-            >
-              <Link to={`/case-study/${project.id}`}>
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className="group relative h-full"
-                >
-                  <div className="relative h-full rounded-3xl overflow-hidden bg-teal-950/30 backdrop-blur-sm border border-teal-700/50 hover:border-teal-500/50 transition-all hover:shadow-lg hover:shadow-teal-500/20">
-                    {/* Image */}
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <ImageWithFallback
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-overlay`} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-                    </div>
+      {/* 🖤 Projects Section */}
+      <div className="min-h-screen py-32 px-6 bg-black">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-20"
+          >
+            <h1 className="text-6xl md:text-8xl mb-6 tracking-tight">
+              <span className="bg-gradient-to-br from-white via-teal-100 to-teal-400 bg-clip-text text-transparent">
+                Selected Work
+              </span>
+            </h1>
+            <p className="text-xl text-teal-200/70 max-w-2xl">
+              A curated collection of projects spanning AI/ML interfaces, data visualization, and enterprise SaaS platforms
+            </p>
+          </motion.div>
 
-                    {/* Content */}
-                    <div className="p-8">
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 rounded-full bg-teal-700/50 text-xs text-teal-200"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      <h3 className="text-3xl mb-3 text-white group-hover:text-teal-100 transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-teal-200/60 leading-relaxed mb-4">
-                        {project.description}
-                      </p>
-                      <div className="inline-flex items-center gap-2 text-teal-300 group-hover:text-teal-400 transition-colors">
-                        <span>View Case Study</span>
-                        <ArrowRight
-                          size={18}
-                          className="group-hover:translate-x-1 transition-transform"
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                id={project.id} // ✅ Add id for scrolling
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                <Link to={`/case-study/${project.id}`}>
+                  <motion.div
+                    whileHover={{ y: -8 }}
+                    className="group relative h-full"
+                  >
+                    <div className="relative h-full rounded-3xl overflow-hidden bg-teal-950/30 backdrop-blur-sm border border-teal-700/50 hover:border-teal-500/50 transition-all hover:shadow-lg hover:shadow-teal-500/20">
+                      {/* Image */}
+                      <div className="relative aspect-[16/10] overflow-hidden">
+                        <ImageWithFallback
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-overlay`} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-8">
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 rounded-full bg-teal-700/50 text-xs text-teal-200"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <h3 className="text-3xl mb-3 text-white group-hover:text-teal-100 transition-colors">
+                          {project.title}
+                        </h3>
+                        <p className="text-teal-200/60 leading-relaxed mb-4">
+                          {project.description}
+                        </p>
+                        <div className="inline-flex items-center gap-2 text-teal-300 group-hover:text-teal-400 transition-colors">
+                          <span>View Case Study</span>
+                          <ArrowRight
+                            size={18}
+                            className="group-hover:translate-x-1 transition-transform"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              </Link>
-            </motion.div>
-          ))}
+                  </motion.div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
