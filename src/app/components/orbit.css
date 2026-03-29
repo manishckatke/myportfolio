@@ -1,0 +1,90 @@
+.orbit-container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, #021414, #000);
+  overflow: hidden;
+}
+
+/* Center circle */
+.center-circle {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 255, 200, 0.2), transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 200, 0.2);
+  z-index: 10;
+  text-align: center;
+}
+
+.center-circle h2 {
+  color: white;
+  margin-bottom: 8px;
+}
+
+.center-circle p {
+  color: #00ffc8;
+}
+
+.center-circle span {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* Orbit rings */
+.orbit-ring {
+  position: absolute;
+  border: 1px solid rgba(0, 255, 200, 0.15);
+  border-radius: 50%;
+  animation: rotate linear infinite;
+}
+
+/* Rotate whole ring */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Position item in orbit */
+.orbit-item-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+/* Orbit item */
+.orbit-item {
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: rgba(0, 255, 200, 0.1);
+  color: #00ffc8;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 200, 0.2);
+
+  /* THIS keeps text straight */
+  animation: counterRotate linear infinite;
+}
+
+/* Counter rotation (IMPORTANT) */
+@keyframes counterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
