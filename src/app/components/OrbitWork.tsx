@@ -35,10 +35,12 @@ export default function OrbitWork() {
               transform: `rotate(${ring.angle}deg) translate(${ring.radius}px)`,
             }}
           >
-            <div className="orbit-item">
-                style={{ animationDuration: `${ring.speed}s` }}
-              {ring.label}
-            </div>
+            <div
+  className="orbit-item"
+  style={{ animationDuration: `${ring.speed}s` }}
+>
+  {ring.label}
+</div>
           </div>
         </div>
       ))}
